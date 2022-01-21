@@ -6,7 +6,7 @@ export class Product {
   image: string = "";
   price: number = 0;
   stock: number = 0;
-  fetured: boolean = true;
+
   active: boolean = true;
 
 }
