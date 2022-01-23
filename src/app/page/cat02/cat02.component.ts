@@ -1,3 +1,4 @@
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Cat02Component implements OnInit {
 
-  constructor() { }
+  constructor( private am: ActivatedRoute ) {}
+
+  name: string = '';
 
   ngOnInit(): void {
+    this.am.params.subscribe( params=> {
+      this.name =  params['name'];
+    } );
   }
 
 }

@@ -3,6 +3,21 @@
   <div class="row">
     <div class="col-12">
       <router-outlet></router-outlet>
+
+
+
+      <h1>Próba</h1>
+      <div style="display:flex;flex-flow:wrap;">
+        <div *ngFor="let product of data$ | async" style="border:100px;padding:1rem;width:20%;float:left;">
+          <img [src]="'/assets/art/'+product.image+'!PinterestSmall.jpg'" width="100%">
+          <strong>{{ product.name }}</strong>
+          <br>{{ product.description }}
+          <br>{{ product.price }}
+          <br>{{ product.stock }}
+          <br>{{ product.active }}
+          <br>{{ product.featured }}
+        </div>
+      </div>
     </div>
   </div>
 </div>
