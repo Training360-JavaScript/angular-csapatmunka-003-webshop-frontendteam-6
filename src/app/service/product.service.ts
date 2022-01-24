@@ -16,7 +16,8 @@ export class ProductService {
     "price": 61000,
     "stock": 85,
     "featured": true,
-    "active": true
+    "active": true,
+    "specialOffer": true
   }, {
     "id": 2,
     "catId": 3,
@@ -36,7 +37,8 @@ export class ProductService {
     "price": 67000,
     "stock": 94,
     "featured": false,
-    "active": true
+    "active": true,
+    "specialOffer": true
   }, {
     "id": 4,
     "catId": 1,
@@ -66,7 +68,8 @@ export class ProductService {
     "price": 82000,
     "stock": 17,
     "featured": false,
-    "active": true
+    "active": true,
+    "specialOffer": true
   }, {
     "id": 7,
     "catId": 4,
@@ -196,7 +199,8 @@ export class ProductService {
     "price": 74000,
     "stock": 97,
     "featured": false,
-    "active": true
+    "active": true,
+    "specialOffer": true
   }, {
     "id": 20,
     "catId": 4,
@@ -276,7 +280,8 @@ export class ProductService {
     "price": 46000,
     "stock": 35,
     "featured": false,
-    "active": true
+    "active": true,
+    "specialOffer": true
   }, {
     "id": 28,
     "catId": 3,
@@ -306,7 +311,8 @@ export class ProductService {
     "price": 36000,
     "stock": 18,
     "featured": false,
-    "active": true
+    "active": true,
+    "specialOffer": true
   }, {
     "id": 31,
     "catId": 2,
@@ -386,7 +392,8 @@ export class ProductService {
     "price": 90000,
     "stock": 46,
     "featured": true,
-    "active": true
+    "active": true,
+    "specialOffer": true
   }, {
     "id": 39,
     "catId": 4,
@@ -546,7 +553,8 @@ export class ProductService {
     "price": 28000,
     "stock": 63,
     "featured": false,
-    "active": true
+    "active": true,
+    "specialOffer": true
   }, {
     "id": 55,
     "catId": 4,
