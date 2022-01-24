@@ -8,6 +8,8 @@ export const environment = {
   cardImagePostfix: '!PinterestSmall.jpg',
   fullImageFolder: '/assets/art/',
   fullImagePostfix: '',
+  fullImageTimeout: 10000,
+  specialOfferPercent: 80,
 };
 
 /*

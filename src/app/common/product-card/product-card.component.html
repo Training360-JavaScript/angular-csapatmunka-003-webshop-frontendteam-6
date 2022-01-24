@@ -1,10 +1,37 @@
 <div class="card m-3" style="width: 18rem;">
-  <img [src]="imageUrl" class="card-img-top" [alt]="product.name">
+  <img [src]="imageUrl" class="card-img-top" [alt]="product.name" (click)="onImageClick()">
   <div class="card-body">
     <h5 class="card-title">{{ product.name }}</h5>
     <p class="card-text">{{ product.description }}</p>
     <p class="card-text">stock: {{ product.stock }}</p>
-    <p class="card-text">{{ product.price | currency }}</p>
-    <button class="btn btn-primary">Add to cart</button>
+    <ng-container *ngTemplateOutlet="priceTemplate" ></ng-container>  
+    <button (click)="onAddToCart()" class="btn btn-primary">Add to cart</button>
   </div>
 </div>
+
+<!-- Price template -->
+<ng-template #priceTemplate>
+  <p *ngIf="product.specialOffer; else elseBlock" class="card-text">
+    <span class="card-text"
+    style="text-decoration: line-through;">{{ getOriginalPrice(product.price) | currency }}</span>
+    &nbsp;
+    <span class="card-text" style="color:red;">{{ product.price | currency }}</span>
+  </p>
+  <ng-template #elseBlock>
+    <p class="card-text">{{ product.price | currency }}</p>
+  </ng-template>
+</ng-template>
+
+
+<!-- Modal -->
+<div class="modal-container" [ngClass]="{'hidden': !modalImage}" (click)="onModalClick()" >
+  <div class="modal-inner" >
+    <img class="small" [src]="enableFullImageUrl ? fullImageUrl : imageUrl" class="card-img-top" [alt]="product.name" (click)="onImageClick()" >
+    <div>
+      {{ product.name }}
+    </div>
+    <ng-container *ngTemplateOutlet="priceTemplate" ></ng-container>
+    <div class="loading" [ngClass]="{'hidden': hiresLoaded}" >(Higher resolution image loading, please wait...)</div>
+  </div>
+</div>
+
