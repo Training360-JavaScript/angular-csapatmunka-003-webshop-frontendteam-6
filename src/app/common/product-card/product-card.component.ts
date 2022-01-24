@@ -36,7 +36,7 @@ export class ProductCardComponent implements OnInit {
 
   constructor(private el: ElementRef) { }
 
-  setupHires() {
+  setupFullImageUrl(): void {
     const imgElement = this.el.nativeElement.querySelector('.modal-container img');
     let tout = window.setTimeout(() => {
       this.enableFullImageUrl = true;
@@ -45,20 +45,24 @@ export class ProductCardComponent implements OnInit {
     }, 0);
   }
   
-  setupModalAutoHide() {
+  endModal(): void {
+    this.modalImage = false;
     if (this.modalAutoHideTimerHandle) window.clearTimeout(this.modalAutoHideTimerHandle);
-    this.modalAutoHideTimerHandle = window.setTimeout(this.onModalClick.bind(this), environment.fullImageTimeout);
+  }
+
+  startModal(): void {
+    this.modalImage = true;
+    if (!this.enableFullImageUrl) this.setupFullImageUrl();
+    if (this.modalAutoHideTimerHandle) window.clearTimeout(this.modalAutoHideTimerHandle);
+    this.modalAutoHideTimerHandle = window.setTimeout(this.endModal.bind(this), environment.fullImageTimeout);
   }
 
   onImageClick(): void {
-    this.modalImage = true;
-    this.setupModalAutoHide();
-    if (!this.enableFullImageUrl) this.setupHires();
+    this.startModal();
   }
 
   onModalClick(): void {
-    this.modalImage = false;
-    if (this.modalAutoHideTimerHandle) window.clearTimeout(this.modalAutoHideTimerHandle);
+    this.endModal();
   }
 
   onAddToCart(): void {

@@ -27,11 +27,11 @@
 <div class="modal-container" [ngClass]="{'hidden': !modalImage}" (click)="onModalClick()" >
   <div class="modal-inner" >
     <img class="small" [src]="enableFullImageUrl ? fullImageUrl : imageUrl" class="card-img-top" [alt]="product.name" (click)="onImageClick()" >
-    <div>
+    <div class="modal-inner-text">
       {{ product.name }}
+      <ng-container *ngTemplateOutlet="priceTemplate" ></ng-container>
+      <div class="loading" [ngClass]="{'hidden': hiresLoaded}" >(Higher resolution image loading, please wait...)</div>
     </div>
-    <ng-container *ngTemplateOutlet="priceTemplate" ></ng-container>
-    <div class="loading" [ngClass]="{'hidden': hiresLoaded}" >(Higher resolution image loading, please wait...)</div>
   </div>
 </div>
 
