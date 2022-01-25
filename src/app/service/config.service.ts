@@ -19,5 +19,12 @@ export class ConfigService {
     {text: 'Csendélet', link: '/kategoria/csendelet'},
   ];
 
+  cardImageFolder: string = '/assets/art/';
+  cardImagePostfix: string = '!PinterestSmall.jpg';
+  fullImageFolder: string = '/assets/art/';
+  fullImagePostfix: string = '';
+  fullImageTimeout: number = 10000;
+  specialOfferPercent: number = 80;
+
   constructor() { }
 }

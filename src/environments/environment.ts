@@ -3,13 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  cardImageFolder: '/assets/art/',
-  cardImagePostfix: '!PinterestSmall.jpg',
-  fullImageFolder: '/assets/art/',
-  fullImagePostfix: '',
-  fullImageTimeout: 10000,
-  specialOfferPercent: 80,
+  production: false
 };
 
 /*

@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Product } from './../../model/product';
-import { environment } from './../../../environments/environment';
+import { ConfigService } from './../../service/config.service';
 
 @Component({
   selector: 'app-product-card',
@@ -23,18 +23,21 @@ export class ProductCardComponent implements OnInit {
   }
   
   getOriginalPrice(price: number) {
-    return price / (environment.specialOfferPercent / 100);
+    return price / (this.configService.specialOfferPercent / 100);
   }
 
   get imageUrl(): string {
-    return `${environment.cardImageFolder}${this.product.image}${environment.cardImagePostfix}`;
+    return `${this.configService.cardImageFolder}${this.product.image}${this.configService.cardImagePostfix}`;
   }
 
   get fullImageUrl(): string {
-    return `${environment.fullImageFolder}${this.product.image}${environment.fullImagePostfix}`;
+    return `${this.configService.fullImageFolder}${this.product.image}${this.configService.fullImagePostfix}`;
   }
 
-  constructor(private el: ElementRef) { }
+  constructor(
+    private el: ElementRef,
+    private configService: ConfigService,
+    ) { }
 
   setupFullImageUrl(): void {
     const imgElement = this.el.nativeElement.querySelector('.modal-container img');
@@ -54,7 +57,7 @@ export class ProductCardComponent implements OnInit {
     this.modalImage = true;
     if (!this.enableFullImageUrl) this.setupFullImageUrl();
     if (this.modalAutoHideTimerHandle) window.clearTimeout(this.modalAutoHideTimerHandle);
-    this.modalAutoHideTimerHandle = window.setTimeout(this.endModal.bind(this), environment.fullImageTimeout);
+    this.modalAutoHideTimerHandle = window.setTimeout(this.endModal.bind(this), this.configService.fullImageTimeout);
   }
 
   onImageClick(): void {
