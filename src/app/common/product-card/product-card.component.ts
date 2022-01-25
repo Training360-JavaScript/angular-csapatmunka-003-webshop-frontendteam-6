@@ -12,6 +12,7 @@ export class ProductCardComponent implements OnInit {
 
   @Input() product: Product = new Product();
 
+
   get imageUrl(): string {
     return `${environment.cardImageFolder}${this.product.image}${environment.cardImagePostfix}`;
   }
