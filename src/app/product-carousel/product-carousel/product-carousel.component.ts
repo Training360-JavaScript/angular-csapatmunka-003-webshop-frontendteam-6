@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductCardComponent } from 'src/app/common/product-card/product-card.component';
+import { Product } from 'src/app/model/product';
 
 @Component({
   selector: 'app-product-carousel',
@@ -8,7 +8,7 @@ import { ProductCardComponent } from 'src/app/common/product-card/product-card.c
 })
 export class ProductCarouselComponent implements OnInit {
 
-  @Input product!: ProductCardComponent;
+  @Input() products: Product[] = [];
 
   constructor() { }
 
