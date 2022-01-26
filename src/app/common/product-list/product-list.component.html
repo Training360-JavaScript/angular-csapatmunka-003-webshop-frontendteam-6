@@ -1,12 +1,15 @@
 <p>product-list works!</p>
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline">
-    <input [(ngModel)]="phrase" type="text" class="form-control" />
+    <input
+      [(ngModel)]="phrase"
+      name="phrase"
+      type="text"
+      class="form-control"
+    />
   </form>
 </nav>
 
-<div>
-  <ng-template *ngFor="let product of products | filter: phrase">
-    <app-product-card [product]="product"> </app-product-card>
-  </ng-template>
-</div>
+<ng-container *ngFor="let product of products | filter: phrase">
+  <app-product-card [product]="product"> </app-product-card>
+</ng-container>
