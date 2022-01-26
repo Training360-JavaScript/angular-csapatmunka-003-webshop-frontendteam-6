@@ -26,6 +26,7 @@ export class ProductCardComponent implements OnInit {
     return price / (this.configService.specialOfferPercent / 100);
   }
 
+
   get imageUrl(): string {
     return `${this.configService.cardImageFolder}${this.product.image}${this.configService.cardImagePostfix}`;
   }
