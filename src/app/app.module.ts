@@ -16,6 +16,8 @@ import { SorterPipe } from './pipe/sorter.pipe';
 import { RandomPipe } from './pipe/random.pipe';
 import { FrontendPipe } from './pipe/frontend.pipe';
 import { ProductListComponent } from './common/product-list/product-list.component';
+import { FeaturedListComponent } from './common/featured-list/featured-list.component';
+import { SpecialOfferListComponent } from './common/special-offer-list/special-offer-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { ProductListComponent } from './common/product-list/product-list.compone
     FilterPipe,
     ProductListComponent,
     ProductCarouselComponent,
+    FeaturedListComponent,
+    SpecialOfferListComponent,
   ],
   imports: [
     BrowserModule,
