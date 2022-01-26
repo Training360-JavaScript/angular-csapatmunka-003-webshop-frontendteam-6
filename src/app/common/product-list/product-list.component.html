@@ -10,6 +10,8 @@
   </form>
 </nav>
 
-<ng-container *ngFor="let product of products | filter: phrase">
-  <app-product-card [product]="product"> </app-product-card>
-</ng-container>
+<div class="row">
+  <ng-container *ngFor="let product of products | filter:{name:phrase}">
+    <app-product-card [product]="product"> </app-product-card>
+  </ng-container>
+</div>

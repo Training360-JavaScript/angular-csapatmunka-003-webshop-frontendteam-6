@@ -29,7 +29,7 @@ import { ProductListComponent } from './common/product-list/product-list.compone
     SorterPipe,
     RandomPipe,
     FrontendPipe,
-    FilterPipe
+    FilterPipe,
     ProductListComponent,
     ProductCarouselComponent,
   ],
