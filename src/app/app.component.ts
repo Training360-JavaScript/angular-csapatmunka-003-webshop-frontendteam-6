@@ -12,9 +12,12 @@ export class AppComponent {
 
   title = 'str-angular-project001';
 
-  data$ : Observable<Product[]>= this.ps.getAll();
+  //data$: Observable<Product[]> = this.ps.getAll();
 
-  constructor( private ps: ProductService ) {
+  products: Product[] = [];
+
+  constructor(private ps: ProductService) {
+    this.ps.getAll().subscribe(data => this.products = data);
   }
 
 }

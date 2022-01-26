@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -9,6 +10,8 @@ import { HomeComponent } from './page/home/home.component';
 import { ProductCarouselComponent } from './product-carousel/product-carousel/product-carousel.component';
 import { ProductService } from './service/product.service';
 import { ProductCardComponent } from './common/product-card/product-card.component';
+import { ProductListComponent } from './common/product-list/product-list.component';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -18,12 +21,15 @@ import { ProductCardComponent } from './common/product-card/product-card.compone
     Cat01Component,
     Cat02Component,
     HomeComponent,
-    ProductCarouselComponent,
     ProductCardComponent,
+    ProductListComponent,
+    FilterPipe
+    ProductCarouselComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
