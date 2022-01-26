@@ -10,9 +10,12 @@ import { HomeComponent } from './page/home/home.component';
 import { ProductCarouselComponent } from './product-carousel/product-carousel/product-carousel.component';
 import { ProductService } from './service/product.service';
 import { ProductCardComponent } from './common/product-card/product-card.component';
+import { FilterPipe } from './pipe/filter.pipe';
+import { ActivePipe } from './pipe/active.pipe';
+import { SorterPipe } from './pipe/sorter.pipe';
+import { RandomPipe } from './pipe/random.pipe';
+import { FrontendPipe } from './pipe/frontend.pipe';
 import { ProductListComponent } from './common/product-list/product-list.component';
-import { FilterPipe } from './filter.pipe';
-
 
 @NgModule({
   declarations: [
@@ -22,8 +25,12 @@ import { FilterPipe } from './filter.pipe';
     Cat02Component,
     HomeComponent,
     ProductCardComponent,
-    ProductListComponent,
+    ActivePipe,
+    SorterPipe,
+    RandomPipe,
+    FrontendPipe,
     FilterPipe
+    ProductListComponent,
     ProductCarouselComponent,
   ],
   imports: [

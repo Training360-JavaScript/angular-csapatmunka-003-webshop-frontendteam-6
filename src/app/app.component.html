@@ -5,17 +5,52 @@
   <div class="row">
     <div class="col-12">
       <router-outlet></router-outlet>
+
       <app-product-list [products]="products"></app-product-list>
+      
       <h1>Próba</h1>
 
-      <!-- <div class="container">
+<!--
+      <div class="container">
         <div class="row">
           <app-product-card
             *ngFor="let product of data$ | async"
             [product]="product"
           ></app-product-card>
         </div>
-      </div> -->
+      </div>
+-->
+
+      <div class="container">
+        <div class="row flex-column">
+          <h2>1</h2>
+          <div *ngFor="let product of data$ | async | frontend:2 | random">{{ product.name }}</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row flex-column">
+          <h2>2</h2>
+          <div *ngFor="let product of data$ | async | filter:{name:'mona'} | random">{{ product.name }}</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row flex-column">
+          <h2>3</h2>
+          <div *ngFor="let product of data$ | async | sorter:'name':'descend' | frontend: 10 ">{{ product.name }}</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row flex-column">
+          <h2>4</h2>
+          <div *ngFor="let product of data$ | async | filter:{specialOffer:true}">{{ product.name }} - {{ product.specialOffer }}</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row flex-column">
+          <h2>5</h2>
+          <div *ngFor="let product of data$ | async | active | sorter:'name':'descend'  ">{{ product.name }} - {{ product.active }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
