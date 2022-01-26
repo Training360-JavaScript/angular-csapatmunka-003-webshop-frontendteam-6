@@ -9,6 +9,11 @@ import { Cat02Component } from './page/cat02/cat02.component';
 import { HomeComponent } from './page/home/home.component';
 import { ProductService } from './service/product.service';
 import { ProductCardComponent } from './common/product-card/product-card.component';
+import { FilterPipe } from './pipe/filter.pipe';
+import { ActivePipe } from './pipe/active.pipe';
+import { SorterPipe } from './pipe/sorter.pipe';
+import { RandomPipe } from './pipe/random.pipe';
+import { FrontendPipe } from './pipe/frontend.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { ProductCardComponent } from './common/product-card/product-card.compone
     Cat01Component,
     Cat02Component,
     HomeComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ActivePipe,
+    SorterPipe,
+    RandomPipe,
+    FrontendPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
