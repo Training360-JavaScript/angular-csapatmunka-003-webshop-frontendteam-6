@@ -6,8 +6,8 @@
     <div class="col-12">
       <router-outlet></router-outlet>
 
-      <app-featured-list> </app-featured-list>
-      <app-special-offer-list></app-special-offer-list>
+      <app-featured-list [products]="products"> </app-featured-list>
+      <app-special-offer-list [products]="products"></app-special-offer-list>
 
       <app-product-list [products]="products"></app-product-list>
 
