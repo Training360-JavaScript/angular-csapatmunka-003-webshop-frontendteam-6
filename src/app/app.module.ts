@@ -16,7 +16,7 @@ import { SorterPipe } from './pipe/sorter.pipe';
 import { RandomPipe } from './pipe/random.pipe';
 import { FrontendPipe } from './pipe/frontend.pipe';
 import { ProductListComponent } from './common/product-list/product-list.component';
-import { DataEditorComponent } from './data-editor/data-editor.component';
+import { DataEditorComponent } from './common/data-editor/data-editor.component';
 import { FeaturedListComponent } from './common/featured-list/featured-list.component';
 import { SpecialOfferListComponent } from './common/special-offer-list/special-offer-list.component';
 

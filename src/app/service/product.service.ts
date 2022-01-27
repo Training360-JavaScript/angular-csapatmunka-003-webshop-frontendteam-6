@@ -620,7 +620,7 @@ export class ProductService {
   getAll(): Observable<Product[]> {
     return new Observable(
       subscriber => {
-        subscriber.next( this.list );
+        subscriber.next( JSON.parse(JSON.stringify(this.list)) );
         subscriber.complete();
       }
     )

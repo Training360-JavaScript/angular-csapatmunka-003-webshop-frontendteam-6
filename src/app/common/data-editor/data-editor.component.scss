@@ -1,0 +1,9 @@
+.data-editor-table {
+  input {
+    width: 100%;
+  }
+  thead tr th {
+    user-select: none;
+    cursor: pointer;
+  }
+}
