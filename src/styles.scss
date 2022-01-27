@@ -1,6 +1,10 @@
 /* Product card */
-.modal-inner img {
-    height: 10rem;
-    width: 10rem;
+.card {
+    height: 100%;
+}
+
+.card img {
+    height: 18rem;
+    width: 18rem;
     object-fit: cover;
 }
