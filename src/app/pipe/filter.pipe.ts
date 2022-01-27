@@ -8,7 +8,7 @@ export class FilterPipe implements PipeTransform {
 
   transform(
     products: Product[] | null,
-    options: { name?: string, active?: boolean, specialOffer?: boolean, featured?: boolean, }
+    options: { name?: string, active?: boolean, specialOffer?: boolean, featured?: boolean, categoryId?: number }
   ): Product[] | null {
 
     if (!Array.isArray(products)) {
@@ -33,6 +33,11 @@ export class FilterPipe implements PipeTransform {
     if (Object.keys(options).includes('featured')) {
       result = result.filter(product => product.featured === options.featured);
     }
+
+    if (Object.keys(options).includes('categoryId')) {
+      result = result.filter(product => product.catId === options.categoryId);
+    }
+
     return result;
   }
 

@@ -1,17 +1,36 @@
-<p>product-list works!</p>
-<nav class="navbar navbar-light bg-light">
-  <form class="form-inline">
-    <input
-      [(ngModel)]="phrase"
-      name="phrase"
-      type="text"
-      class="form-control"
-    />
-  </form>
-</nav>
+<div class="container">
 
-<div class="row">
-  <ng-container *ngFor="let product of products | filter:{name:phrase}">
-    <app-product-card [product]="product"> </app-product-card>
-  </ng-container>
+  <nav class="navbar navbar-light bg-light">
+    <form class="form-inline w-100">
+
+      Név:
+      <input [(ngModel)]="phrase" name="phrase" type="text" class="form-control ml-2 mr-4" />
+
+      <div class="ml-auto">
+        Rendezés:
+        <select [(ngModel)]="order" class="form-control ml-2 mr-4" name="order">
+          <option value="price">Ár</option>
+          <option value="name">Név</option>
+          <option value="featured">Kiemelt</option>
+        </select>
+        <select [(ngModel)]="direction" class="form-control ml-1" name="direction">
+          <option value="ascend">növekvő</option>
+          <option value="descend">csökkenő</option>
+        </select>
+      </div>
+    </form>
+  </nav>
+
+  <div class="row">
+
+    <ng-container *ngFor="let product of products | filter: {name:phrase} | sorter:order:direction">
+      <app-product-card [product]="product"> </app-product-card>
+    </ng-container>
+
+    <ng-container *ngIf="(products| filter: {name:phrase})?.length===0">
+      nincs találat
+    </ng-container>
+
+
+  </div>
 </div>
