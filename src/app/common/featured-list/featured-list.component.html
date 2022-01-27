@@ -1,0 +1,16 @@
+<div class="container d-flex">
+  <div class="row col-12 justify-content-center">
+    <ng-container
+      *ngFor="
+        let product of products
+          | filter: { featured: true }
+          | random
+          | slice: 0:5
+      "
+    >
+      <app-product-card [product]="product"> </app-product-card>
+    </ng-container>
+
+    <p>featured-list works!</p>
+  </div>
+</div>
