@@ -1,4 +1,16 @@
-<p>Ez egy olyan oldal lesz, ami az url alapján határozza meg a kategória id-t és az alapján listázza a termékeket.
-  <br>
-  Kategória neve: {{ name }}
-</p>
+<div class="container">
+
+  <h1 *ngIf="name">{{ name }} kategória termékei</h1>
+  <div class="row" *ngIf="products|async">
+    <app-product-list *ngIf="category" [products]="products | async | filter:{categoryId:category.id}"></app-product-list>
+  </div>
+
+  <ng-container *ngIf="categoryNotExists">
+    <h1>Eltévedtél?</h1>
+    <div>
+      Nincs ilyen kategória.
+    </div>
+  </ng-container>
+
+</div>
+
