@@ -1,9 +1,17 @@
+import { IMenuItem } from './config.service';
 import { Injectable } from '@angular/core';
 
 export interface IMenuItem {
   text: string;
   link: string;
   icon?: string;
+  id?: string;
+}
+
+export interface ICategory {
+  id: number;
+  name: string;
+  key: string;
 }
 
 @Injectable({
@@ -13,10 +21,17 @@ export class ConfigService {
 
   appName: string = 'Sample Webshop';
 
+  categoryList: ICategory[] = [
+    { id: 1, name: 'Portré', key: 'portre' },
+    { id: 2, name: 'Csendélet', key: 'csendelet' },
+    { id: 3, name: 'Tájkép', key: 'tajkep' },
+  ]
+
   menuItems: IMenuItem[] = [
     {text: 'Főoldal', link: '/', icon: 'home'},
-    {text: 'Portré', link: '/portre'},
-    {text: 'Csendélet', link: '/kategoria/csendelet'},
+    ... this.categoryList.map( (category: ICategory) : IMenuItem => {
+      return {text: category.name, link: `/kategoria/${category.key}`};
+    } )
   ];
 
   cardImageFolder: string = '/assets/art/';
@@ -26,5 +41,8 @@ export class ConfigService {
   fullImageTimeout: number = 10000;
   specialOfferPercent: number = 80;
 
-  constructor() { }
+  constructor() {
+    console.log(this.menuItems);
+
+  }
 }

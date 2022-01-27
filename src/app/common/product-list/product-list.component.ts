@@ -8,9 +8,13 @@ import { NgModule } from '@angular/core';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  @Input() products: Product[] = [];
 
-  phrase: string = "";
+  @Input() products: Product[] | null = [];
+
+  phrase: string = '';
+  order: string =  'price';
+  direction: string = 'ascend';
+
   constructor() { }
 
   ngOnInit(): void {
