@@ -31,7 +31,8 @@ export class ConfigService {
     {text: 'Főoldal', link: '/', icon: 'home'},
     ... this.categoryList.map( (category: ICategory) : IMenuItem => {
       return {text: category.name, link: `/kategoria/${category.key}`};
-    } )
+    } ),
+    {text: 'Admin', link: '/admin', icon: 'admin'}
   ];
 
   cardImageFolder: string = '/assets/art/';

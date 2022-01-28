@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { AdminComponent } from './common/admin/admin.component';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Cat01Component } from './page/cat01/cat01.component';
 import { Cat02Component } from './page/cat02/cat02.component';
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'kategoria/:name',
     component: Cat02Component,
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
   },
   {
     path: '**',

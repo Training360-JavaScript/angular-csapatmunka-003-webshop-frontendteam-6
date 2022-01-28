@@ -1,34 +1,35 @@
 <table class="table table-striped data-editor-table">
   <thead>
     <tr>
-      <th (click)="thClick('id')"  scope="col">#</th>
-      <th (click)="thClick('catId')" >Category id</th>
-      <th (click)="thClick('name')" >Name</th>
-      <th (click)="thClick('description')" >Description</th>
-      <th (click)="thClick('image')" >Image</th>
-      <th (click)="thClick('price')" >Price</th>
-      <th (click)="thClick('stock')" >Stock</th>
-      <th (click)="thClick('featured')" >Featured</th>
-      <th (click)="thClick('active')" >Active</th>
-      <th (click)="thClick('specialOffer')" >SpecialOffer</th>
-      <th >Operations </th>
+      <th *ngFor="let info of thInfos">
+        {{ info.text }} <br>
+        <i (click)="thClick(info)" 
+          [class]="[
+            'fa',
+            'fa-lg',
+            (info.sorted ? iNames[info.i] : 'fa-sort')
+          ]"
+          aria-hidden="true"
+        ></i>
+      </th>
+      <th>Operations</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let product of products">
       <th scope="row">{{product.id}}</th>
-      <td><input [disabled]="disabled" type="number" [(ngModel)]="product.catId" ></td>
-      <td><input [disabled]="disabled" type="text" [(ngModel)]="product.name" ></td>
-      <td><input [disabled]="disabled" type="text" [(ngModel)]="product.description" ></td>
-      <td><input [disabled]="disabled" type="text" [(ngModel)]="product.image" ></td>
-      <td><input [disabled]="disabled" type="number" [(ngModel)]="product.price" ></td>
-      <td><input [disabled]="disabled" type="number" [(ngModel)]="product.stock" ></td>
-      <td><input [disabled]="disabled" type="checkbox" [(ngModel)]="product.featured" ></td>
-      <td><input [disabled]="disabled" type="checkbox" [(ngModel)]="product.active" ></td>
-      <td><input [disabled]="disabled" type="checkbox" [(ngModel)]="product.specialOffer" ></td>
+      <td *ngFor="let info of thInfos | slice:1">
+        <ng-container *ngIf="info.type === 'checkbox'; else elseBlock">
+          <input [disabled]="disabled" [class]="info.key" type="checkbox" [(ngModel)]="product[info.key]">
+        </ng-container>
+        <ng-template #elseBlock>
+          <input [disabled]="disabled" [class]="info.key" [type]="info.type" [(ngModel)]="product[info.key]">
+        </ng-template>
+      </td>
       <td>
         <div class="btn-group">
-          <button [disabled]="disabled" class="btn btn-secondary">Modify</button>
+          <button [disabled]="disabled" class="btn btn-secondary">Reread</button>
+          <button [disabled]="disabled" class="btn btn-primary">Modify</button>
           <button [disabled]="disabled" class="btn btn-danger">Delete</button>
         </div>
       </td>

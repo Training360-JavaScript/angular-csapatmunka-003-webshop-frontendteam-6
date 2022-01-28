@@ -19,6 +19,7 @@ import { ProductListComponent } from './common/product-list/product-list.compone
 import { DataEditorComponent } from './common/data-editor/data-editor.component';
 import { FeaturedListComponent } from './common/featured-list/featured-list.component';
 import { SpecialOfferListComponent } from './common/special-offer-list/special-offer-list.component';
+import { AdminComponent } from './common/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SpecialOfferListComponent } from './common/special-offer-list/special-o
     DataEditorComponent,
     FeaturedListComponent,
     SpecialOfferListComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
