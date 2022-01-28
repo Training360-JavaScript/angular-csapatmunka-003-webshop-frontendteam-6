@@ -1,11 +1,13 @@
 import { Product } from './../model/product';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  jsonUrl: string = "http://localhost:3000/";
 
   list: Product[] = [{
     "id": 1,
@@ -620,11 +622,28 @@ export class ProductService {
   getAll(): Observable<Product[]> {
     return new Observable(
       subscriber => {
-        subscriber.next( this.list );
+        subscriber.next(this.list);
         subscriber.complete();
       }
     )
   }
+  getAllProduct(): Observable<Product[]> {
+    return this.http.get<Product[]>("http://localhost:3000/");
+  }
 
-  constructor() { }
+  add(list: Product): Observable<any> {
+    return this.http.post<Observable<any>>(this.jsonUrl, list);
+  }
+
+  update(list: Product): Observable<any> {
+    return this.http.put(`${this.jsonUrl}/${list.id}`, list);
+  }
+
+  remove(list: any): Observable<any> {
+    list = list.id ? list.id : list;
+    return this.http.delete(`${this.jsonUrl}/${list}`);
+  }
+
+  constructor(private http: HttpClient) { }
+
 }
