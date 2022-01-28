@@ -14,12 +14,6 @@ export class DataEditorComponent implements OnInit {
 
   startIdx: number = 0;
 
-  // get theadRect(): number[] {
-  //   const thead = document.querySelector('thead');
-  //   thead.
-  //   return [1,2,3,4];
-  // }
-
   get count(): number {
     return Math.floor((window.innerHeight - 300) / 64);
   };
@@ -67,22 +61,31 @@ export class DataEditorComponent implements OnInit {
   }
 
   onModify(product: Product): void {
-    //TODO: patch product...
-    this.readAll();
+    this.disabled = true;
+    this.productService.update(product).subscribe(next => this.refreshProduct(product, next));
   }
 
   onDelete(product: Product): void {
-    //TODO: Delete product...
-    this.readAll();
+    this.disabled = true;
+    this.productService.remove(product.id).subscribe( next => {
+      this.readAll();
+      this.disabled = false;
+    });
+  }
+
+  refreshProduct(oldproduct: Product, newproduct: Product) {
+    const index: number = this.products.indexOf(oldproduct);
+    if (index >= 0)
+    {
+      this.products[index] = newproduct;
+      this.sort();
+    }
+      this.disabled = false;
   }
 
   onRead(product: Product): void {
-    const idx: number = this.products.indexOf(product)
-    if (idx >= 0) {
-      //TODO: Read product...
-      this.products[idx] = product;
-      this.sort();
-    }
+    this.disabled = true;
+    this.productService.get(product.id).subscribe( next => this.refreshProduct(product, next));
   }
 
 

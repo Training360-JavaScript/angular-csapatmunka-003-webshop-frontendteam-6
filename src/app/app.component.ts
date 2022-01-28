@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 // import { Observable } from 'rxjs';
 // import { Product } from './model/product';
-import { ItemService } from './service/item.service';
-import { ProductService } from './service/product.service';
+// import { ItemService } from './service/item.service';
+// import { ProductService } from './service/product.service';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +18,9 @@ export class AppComponent {
 
   //products: Product[] = [];
 
+  // private ps: ProductService,
+  // private iService: ItemService,
   constructor(
-    private ps: ProductService,
-    private iService: ItemService,
   ) {
     // this.ps.getAll().subscribe(data => this.products = data);
 

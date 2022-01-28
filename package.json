@@ -11,7 +11,9 @@
     "test:03": "ng test --include=**/event.service.spec.ts",
     "test:04": "ng test --include=**/navigation.component.spec.ts",
     "test:05": "ng test --include=**/events-list.component.spec.ts",
-    "test:06": "ng test --include=**/app.component.spec.ts"
+    "test:06": "ng test --include=**/app.component.spec.ts",
+    "original": "copy .\\src\\json\\products_original.json .\\src\\json\\products.json",
+    "json": "json-server .\\src\\json\\products.json"
   },
   "private": true,
   "dependencies": {
