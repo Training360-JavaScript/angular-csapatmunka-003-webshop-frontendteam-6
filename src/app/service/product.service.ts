@@ -627,7 +627,7 @@ export class ProductService {
       }
     )
   }
-  getAllProduct(): Observable<Product[]> {
+  getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>("http://localhost:3000/");
   }
 
