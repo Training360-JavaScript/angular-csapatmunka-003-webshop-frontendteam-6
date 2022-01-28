@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 }
 )
-export class listService {
+export class ItemService {
   jsonUrl: string = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 

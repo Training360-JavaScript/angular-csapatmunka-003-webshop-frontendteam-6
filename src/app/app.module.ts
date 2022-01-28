@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -45,10 +46,12 @@ import { ItemService } from './service/item.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [ProductService,
-    ItemService
+  providers: [
+    ProductService,
+    ItemService,
   ],
   bootstrap: [AppComponent]
 })
