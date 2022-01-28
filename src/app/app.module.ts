@@ -1,4 +1,3 @@
-import { ItemService } from './service/item.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +20,7 @@ import { DataEditorComponent } from './common/data-editor/data-editor.component'
 import { FeaturedListComponent } from './common/featured-list/featured-list.component';
 import { SpecialOfferListComponent } from './common/special-offer-list/special-offer-list.component';
 import { AdminComponent } from './common/admin/admin.component';
+import { ItemService } from './service/item.service';
 
 @NgModule({
   declarations: [

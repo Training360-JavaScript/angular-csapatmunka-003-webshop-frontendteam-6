@@ -636,7 +636,7 @@ export class ProductService {
   }
 
   update(list: Product): Observable<any> {
-    return this.http.put(`${this.jsonUrl}/${list.id}`, list);
+    return this.http.patch(`${this.jsonUrl}/${list.id}`, list);
   }
 
   remove(list: any): Observable<any> {
