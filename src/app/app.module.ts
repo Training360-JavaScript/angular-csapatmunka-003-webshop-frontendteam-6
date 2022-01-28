@@ -1,3 +1,4 @@
+import { ItemService } from './service/item.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -46,7 +47,9 @@ import { AdminComponent } from './common/admin/admin.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ProductService],
+  providers: [ProductService,
+    ItemService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
