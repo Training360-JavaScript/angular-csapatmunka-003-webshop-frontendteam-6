@@ -28,11 +28,11 @@ export class ConfigService {
   ]
 
   menuItems: IMenuItem[] = [
-    {text: 'Főoldal', link: '/', icon: 'home'},
+    {text: 'Főoldal', link: '/', icon: 'fa-home'},
     ... this.categoryList.map( (category: ICategory) : IMenuItem => {
       return {text: category.name, link: `/kategoria/${category.key}`};
     } ),
-    {text: 'Admin', link: '/admin', icon: 'admin'}
+    {text: 'Admin', link: '/admin', icon: 'fa-cog'}
   ];
 
   cardImageFolder: string = '/assets/art/';

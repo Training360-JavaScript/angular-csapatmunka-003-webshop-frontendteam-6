@@ -12,11 +12,6 @@ export class DataEditorComponent implements OnInit {
   products: Product[] = [];
   disabled: boolean = true;
 
-  //sort-numeric-up
-  //sort-numeric-down
-  //sort-alpha-up
-  //sort-alpha-down
-
   iNames = [
     'fa-sort-numeric-desc',
     'fa-sort-numeric-asc',
@@ -78,13 +73,12 @@ export class DataEditorComponent implements OnInit {
     const key = info.key as keyof Product;
     const reverse = info.i & 1 ? 1 : -1;
     if (info.i < 2)
-      this.products.sort((a, b) => reverse * (a[key] as number) - (b[key] as number));
+      this.products.sort((a, b) => reverse * ((a[key] as number) - (b[key] as number)));
     else if (info.i < 4)
-      this.products.sort((a, b) => reverse * (a[key] as string).localeCompare(b[key] as string))
+      this.products.sort((a, b) => reverse * ((a[key] as string).localeCompare(b[key] as string)))
     else 
-      this.products.sort((a, b) => reverse * (a[key] === b[key] ? 0 : a[key] ? -1 : 1));
+      this.products.sort((a, b) => reverse * ((a[key] === b[key] ? 0 : a[key] ? -1 : 1)));
   }
-
 
   thClick(info: {key: string, i: number, sorted: boolean}): void {
     info.sorted ? info.i ^= 1 : info.i |= 1;
