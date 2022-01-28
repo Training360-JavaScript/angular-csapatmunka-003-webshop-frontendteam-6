@@ -12,6 +12,25 @@ export class DataEditorComponent implements OnInit {
   products: Product[] = [];
   disabled: boolean = true;
 
+  startIdx: number = 0;
+
+  // get theadRect(): number[] {
+  //   const thead = document.querySelector('thead');
+  //   thead.
+  //   return [1,2,3,4];
+  // }
+
+  get count(): number {
+    return Math.floor((window.innerHeight - 300) / 64);
+  };
+
+  get first():boolean { return this.startIdx == 0;}
+  get last():boolean { return this.endIdx == this.products.length;}
+
+  get endIdx():number {
+    return Math.min(this.products.length, this.startIdx + this.count);
+  }
+
   iNames = [
     'fa-sort-numeric-desc',
     'fa-sort-numeric-asc',
@@ -84,6 +103,14 @@ export class DataEditorComponent implements OnInit {
     info.sorted ? info.i ^= 1 : info.i |= 1;
     this.thInfos.forEach(e => e.sorted = e === info);
     this.sort();
+  }
+
+  onPrevious(): void {
+    this.startIdx = Math.max(0, this.startIdx - this.count);
+  }
+
+  onNext(): void {
+    this.startIdx = Math.max(0, Math.min(this.products.length - this.count, this.startIdx + this.count))
   }
 
   ngOnInit(): void {

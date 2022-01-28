@@ -1,3 +1,8 @@
+<div class="data-editor-pager btn-group">
+  <button [disabled]="first"class="btn btn-secondary" (click)="onPrevious()">&lt;&lt; Previous</button>
+  <button [disabled]="last" class="btn btn-secondary"  (click)="onNext()" >Next &gt;&gt;</button>
+</div>
+<br>
 <table class="table table-striped data-editor-table">
   <thead>
     <tr>
@@ -16,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of products | slice:startIdx:endIdx">
       <th scope="row">{{product.id}}</th>
       <td *ngFor="let info of thInfos | slice:1">
         <ng-container *ngIf="info.type === 'checkbox'; else elseBlock">
@@ -36,3 +41,6 @@
     </tr>
   </tbody>
 </table>
+<div>
+  ( From {{ startIdx + 1 }}. to {{ endIdx }}. ) / {{products.length}} {{ theadRect }}
+</div>
