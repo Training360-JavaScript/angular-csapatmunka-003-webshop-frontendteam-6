@@ -1,0 +1,25 @@
+.create-new-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0004;
+  .create-new-form-inner {
+    display: inline-block;
+    align-items: center;
+    text-align: center;
+    width: 60%;
+    height: 80%;
+    background-color: white;
+  }
+}
+
+.create-new-form-hidden {
+  display: none;
+}

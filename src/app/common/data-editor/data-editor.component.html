@@ -1,7 +1,8 @@
 <div class="data-editor-pager btn-group">
   <button [disabled]="first"class="btn btn-secondary" (click)="onPrevious()">&lt;&lt; Previous</button>
   <button [disabled]="last" class="btn btn-secondary"  (click)="onNext()" >Next &gt;&gt;</button>
-</div>
+</div >
+  <button class="btn btn-secondary ml-5"  (click)="createNew()">Add new</button>
 <br>
 <table class="table table-striped data-editor-table">
   <thead>
@@ -42,5 +43,7 @@
   </tbody>
 </table>
 <div>
-  ( From {{ startIdx + 1 }}. to {{ endIdx }}. ) / {{products.length}}
+  ( From {{ startIdx + 1 }}. to {{ endIdx }}. ) / {{ products.length }}
 </div>
+<!-- create new form -->
+<app-create-new-form [(visible)]="createNewVisible" ></app-create-new-form>

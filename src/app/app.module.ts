@@ -22,6 +22,7 @@ import { FeaturedListComponent } from './common/featured-list/featured-list.comp
 import { SpecialOfferListComponent } from './common/special-offer-list/special-offer-list.component';
 import { AdminComponent } from './page/admin/admin.component';
 import { ItemService } from './service/item.service';
+import { CreateNewFormComponent } from './common/create-new-form/create-new-form.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ItemService } from './service/item.service';
     FeaturedListComponent,
     SpecialOfferListComponent,
     AdminComponent,
+    CreateNewFormComponent,
   ],
   imports: [
     BrowserModule,
