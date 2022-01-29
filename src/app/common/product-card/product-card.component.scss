@@ -1,5 +1,18 @@
-.card img {
-  cursor: pointer;
+.card {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  img {
+    cursor: pointer;
+    height: 40%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  border: 1px rgba(9,9,121,1);
+  border-radius: 0.5rem;
+  color: white!important;
 }
 
 .modal-container {
