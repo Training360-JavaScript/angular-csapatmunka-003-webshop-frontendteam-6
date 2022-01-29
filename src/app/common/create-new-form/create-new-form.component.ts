@@ -9,8 +9,18 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CreateNewFormComponent implements OnInit {
 
-  @Input() visible: boolean = false;
+  private mvisible: boolean = false;
+  @Input() set visible(value: boolean) {
+    if (this.mvisible != value)
+      this.visibleChange.emit(this.mvisible = value);
+  }
+
+  get visible(): boolean {
+    return this.mvisible;
+  }
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+
   @Output() addProduct: EventEmitter<Product>  = new EventEmitter<Product>();
 
   product: Product = new Product();
@@ -28,11 +38,11 @@ export class CreateNewFormComponent implements OnInit {
   }
 
   show(): void {
-    this.visibleChange.emit(this.visible = true);
+    this.visible = true;
   }
 
   hide(): void {
-    this.visibleChange.emit(this.visible = false);
+    this.visible = false;
   }
 
   onClose(): void {
