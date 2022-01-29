@@ -7,13 +7,13 @@
 <table class="table table-striped data-editor-table">
   <thead>
     <tr>
-      <th *ngFor="let info of thInfos">
+      <th *ngFor="let info of fs.info">
         {{ info.text }} <br>
         <i (click)="thClick(info)" 
           [class]="[
             'fa',
             'fa-lg',
-            (info.sorted ? iNames[info.i] : 'fa-sort')
+            (info == sortedInfo ? iNames[info.i * 2 + (revSort ? 0 : 1)] : 'fa-sort')
           ]"
           aria-hidden="true"
         ></i>
@@ -24,7 +24,7 @@
   <tbody>
     <tr *ngFor="let product of products | slice:startIdx:endIdx">
       <th scope="row">{{product.id}}</th>
-      <td *ngFor="let info of thInfos | slice:1">
+      <td *ngFor="let info of fs.info | slice:1">
         <ng-container *ngIf="info.type === 'checkbox'; else elseBlock">
           <input [disabled]="disabled" [class]="info.key" type="checkbox" [(ngModel)]="product[info.key]">
         </ng-container>
@@ -46,4 +46,4 @@
   ( From {{ startIdx + 1 }}. to {{ endIdx }}. ) / {{ products.length }}
 </div>
 <!-- create new form -->
-<app-create-new-form [(visible)]="createNewVisible" ></app-create-new-form>
+<app-create-new-form [(visible)]="createNewFormIsVisible" (addProduct)="addProduct($event)" ></app-create-new-form>

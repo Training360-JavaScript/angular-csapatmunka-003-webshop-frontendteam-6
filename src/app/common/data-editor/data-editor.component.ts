@@ -1,6 +1,8 @@
+import { FormInfo } from 'src/app/forminfo/form-info';
+import { FormService } from './../../service/form.service';
 import { ProductService } from './../../service/product.service';
 import { Product } from '../../model/product';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-data-editor',
@@ -22,7 +24,10 @@ export class DataEditorComponent implements OnInit {
     return Math.min(this.products.length, this.startIdx + this.count);
   }
 
-  createNewVisible: boolean = false;
+  createNewFormIsVisible: boolean = false;
+
+  sortedInfo: FormInfo | null = null;
+  revSort: boolean = false;
 
   iNames = [
     'fa-sort-numeric-desc',
@@ -32,23 +37,10 @@ export class DataEditorComponent implements OnInit {
     'fa-sort-amount-asc',
     'fa-sort-amount-desc',
   ]
-
-
-  readonly thInfos = [
-    { key: 'id', type: 'number', text: '#', i: 0, sorted: false},
-    { key: 'catId', type: 'number', text: 'Category ID', i: 0, sorted: false},
-    { key: 'name', type: 'text', text: 'Name', i: 2, sorted: false},
-    { key: 'description', type: 'text', text: 'Description', i: 2, sorted: false},
-    { key: 'image', type: 'text', text: 'Image', i: 2, sorted: false},
-    { key: 'price', type: 'number', text: 'Price', i: 0, sorted: false},
-    { key: 'stock', type: 'number', text: 'Stock', i: 0, sorted: false},
-    { key: 'featured', type: 'checkbox', text: 'Featured', i: 4, sorted: false},
-    { key: 'active', type: 'checkbox', text: 'Active', i: 4, sorted: false},
-    { key: 'specialOffer', type: 'checkbox', text: 'Special Offer', i: 4, sorted: false},
-  ]
-
+  
   constructor( 
-    private productService: ProductService
+    private productService: ProductService,
+    public fs: FormService,
    ) { }
 
   readAll(): void {
@@ -89,21 +81,22 @@ export class DataEditorComponent implements OnInit {
 
 
   sort() {
-    const info = this.thInfos.find(e => e.sorted);
-    if (!info) return;
+    if (!this.sortedInfo)
+      return;
+    const info: FormInfo = this.sortedInfo;
     const key = info.key as keyof Product;
-    const reverse = info.i & 1 ? 1 : -1;
-    if (info.i < 2)
+    const reverse = this.revSort ? -1 : 1;
+    if (info.i == 0)
       this.products.sort((a, b) => reverse * ((a[key] as number) - (b[key] as number)));
-    else if (info.i < 4)
+    else if (info.i == 1)
       this.products.sort((a, b) => reverse * ((a[key] as string).localeCompare(b[key] as string)))
     else 
       this.products.sort((a, b) => reverse * ((a[key] === b[key] ? 0 : a[key] ? -1 : 1)));
   }
 
-  thClick(info: {key: string, i: number, sorted: boolean}): void {
-    info.sorted ? info.i ^= 1 : info.i |= 1;
-    this.thInfos.forEach(e => e.sorted = e === info);
+  thClick(info: FormInfo): void {
+    this.revSort = this.sortedInfo == info ? !this.revSort : false;
+    this.sortedInfo = info;
     this.sort();
   }
 
@@ -116,7 +109,17 @@ export class DataEditorComponent implements OnInit {
   }
 
   createNew(): void {
-    this.createNewVisible = true;
+    this.createNewFormIsVisible = true;
+  }
+
+  addProduct(product: Product): void {
+    this.disabled = true;
+    this.productService.add(product).subscribe(
+      data => {
+        console.log(data);
+        this.readAll();
+      }
+    );
   }
 
   ngOnInit(): void {

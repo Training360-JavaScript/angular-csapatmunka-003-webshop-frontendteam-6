@@ -1,4 +1,3 @@
-import { IMenuItem } from './config.service';
 import { Injectable } from '@angular/core';
 
 export interface IMenuItem {
