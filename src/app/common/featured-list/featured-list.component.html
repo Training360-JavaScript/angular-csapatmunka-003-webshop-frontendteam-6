@@ -1,14 +1,12 @@
 <h2>Kiemelt termékek</h2>
-<div class="container d-flex">
-  <div class="row col-12 justify-content-center">
-    <ng-container
-      *ngFor="
+<div class="container-flex">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
+    <ng-container *ngFor="
         let product of products
           | filter: { featured: true }
           | random
           | slice: 0:5
-      "
-    >
+      ">
       <app-product-card [product]="product"> </app-product-card>
     </ng-container>
   </div>

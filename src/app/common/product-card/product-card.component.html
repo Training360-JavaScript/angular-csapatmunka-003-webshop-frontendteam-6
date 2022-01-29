@@ -1,11 +1,11 @@
-<div class="card m-3" style="width: 18rem;">
+<div class="card m-3 h-100" style="width: 18rem;">
   <img [src]="imageUrl" class="card-img-top" [alt]="product.name" (click)="onImageClick()">
-  <div class="card-body">
+  <div class="card-body d-flex flex-column">
     <h5 class="card-title">{{ product.name }}</h5>
     <p class="card-text">{{ product.description }}</p>
     <p class="card-text">stock: {{ product.stock }}</p>
     <ng-container *ngTemplateOutlet="priceTemplate" ></ng-container>  
-    <button (click)="onAddToCart()" class="btn btn-primary">Add to cart</button>
+    <button (click)="onAddToCart()" class="btn btn-primary mt-auto">Add to cart</button>
   </div>
 </div>
 
