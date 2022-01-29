@@ -23,6 +23,7 @@ import { SpecialOfferListComponent } from './common/special-offer-list/special-o
 import { AdminComponent } from './page/admin/admin.component';
 import { ItemService } from './service/item.service';
 import { CreateNewFormComponent } from './common/create-new-form/create-new-form.component';
+import { ImageModalComponent } from './common/image-modal/image-modal.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CreateNewFormComponent } from './common/create-new-form/create-new-form
     SpecialOfferListComponent,
     AdminComponent,
     CreateNewFormComponent,
+    ImageModalComponent,
   ],
   imports: [
     BrowserModule,
