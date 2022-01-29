@@ -7,14 +7,19 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductService {
+<<<<<<< HEAD
 
   jsonUrl: string = 'http://localhost:3000/products';
 
   constructor(private http: HttpClient) { }
+=======
+  jsonUrl: string = "http://localhost:3000/list";
+>>>>>>> main
 
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(this.jsonUrl);
   }
+<<<<<<< HEAD
 
   addNewProduct(product: Product): Observable<any> {
     return this.http.post<Observable<any>>(this.jsonUrl, product);
@@ -30,4 +35,25 @@ export class ProductService {
   }
 
   
+=======
+  
+  get(id: number):Observable<Product> {
+    return this.http.get<Product>(`${this.jsonUrl}/${id}`);
+  }
+
+  add(product: Product): Observable<any> {
+    return this.http.post<Observable<any>>(this.jsonUrl, product);
+  }
+
+  update(product: Product): Observable<any> {
+    return this.http.patch(`${this.jsonUrl}/${product.id}`, product);
+  }
+
+  remove(id: number): Observable<any> {
+    return this.http.delete(`${this.jsonUrl}/${id}`);
+  }
+
+  constructor(private http: HttpClient) { }
+
+>>>>>>> main
 }

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -16,8 +17,11 @@ import { SorterPipe } from './pipe/sorter.pipe';
 import { RandomPipe } from './pipe/random.pipe';
 import { FrontendPipe } from './pipe/frontend.pipe';
 import { ProductListComponent } from './common/product-list/product-list.component';
+import { DataEditorComponent } from './common/data-editor/data-editor.component';
 import { FeaturedListComponent } from './common/featured-list/featured-list.component';
 import { SpecialOfferListComponent } from './common/special-offer-list/special-offer-list.component';
+import { AdminComponent } from './page/admin/admin.component';
+import { ItemService } from './service/item.service';
 
 @NgModule({
   declarations: [
@@ -34,15 +38,21 @@ import { SpecialOfferListComponent } from './common/special-offer-list/special-o
     FilterPipe,
     ProductListComponent,
     ProductCarouselComponent,
+    DataEditorComponent,
     FeaturedListComponent,
     SpecialOfferListComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    ItemService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

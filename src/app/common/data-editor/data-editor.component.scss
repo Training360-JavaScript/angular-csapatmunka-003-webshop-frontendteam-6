@@ -1,0 +1,26 @@
+.data-editor-pager {
+  button {
+    width: 10em;
+  }
+}
+.data-editor-table {
+  input {
+    width: 100%;
+  }
+  input[type="number"] {
+    width: 7em;
+  }
+  input.catId, input.stock {
+    width: 4em;
+  }
+  thead tr th {
+    user-select: none;
+    i {
+      margin-left: .25em;
+      cursor: pointer;
+    }
+    i.fa-sort {
+      color: lightgray;
+    }
+  }
+}
