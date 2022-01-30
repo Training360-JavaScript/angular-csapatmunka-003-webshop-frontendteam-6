@@ -9,7 +9,7 @@ export class FormService {
 
   info: FormInfo[] = [
     { key: 'id', type: 'number', text: '#', i: 0},
-    { key: 'catId', type: 'select', text: 'Category ID', i: 0, options: this.cs.categoryList },
+    { key: 'catId', type: 'select', text: 'Category', i: 2, options: this.cs.categoryList },
     { key: 'name', type: 'text', text: 'Name', i: 1},
     { key: 'description', type: 'text', text: 'Description', i: 1},
     { key: 'image', type: 'text', text: 'Image', i: 1},

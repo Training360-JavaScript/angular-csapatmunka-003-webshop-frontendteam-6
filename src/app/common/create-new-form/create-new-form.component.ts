@@ -9,7 +9,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CreateNewFormComponent implements OnInit {
 
-  imageModalVisible:boolean = false;
+  @Output() showProductImage: EventEmitter<Product> = new EventEmitter<Product>();
 
   private mvisible: boolean = false;
   @Input() set visible(value: boolean) {
@@ -62,7 +62,7 @@ export class CreateNewFormComponent implements OnInit {
   }
 
   onShow(): void {
-    this.imageModalVisible = true;
+    this.showProductImage.emit(this.product);
   }
 
   onClick(event: any): void {
