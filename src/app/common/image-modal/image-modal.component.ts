@@ -1,5 +1,4 @@
 import { ConfigService } from 'src/app/service/config.service';
-import { Product } from 'src/app/model/product';
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
 @Component({
@@ -69,7 +68,11 @@ export class ImageModalComponent implements OnInit {
   }
   
   endModal(): void {
-    if (this.modalAutoHideTimerHandle) window.clearTimeout(this.modalAutoHideTimerHandle);
+    this.visible = false;
+    if (this.modalAutoHideTimerHandle) {
+      window.clearTimeout(this.modalAutoHideTimerHandle);
+      this.modalAutoHideTimerHandle = 0;
+    }
   }
 
   startModal(): void {

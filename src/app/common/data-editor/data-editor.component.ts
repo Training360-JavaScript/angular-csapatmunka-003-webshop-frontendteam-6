@@ -13,8 +13,19 @@ export class DataEditorComponent implements OnInit {
 
   @Output() showProductImage: EventEmitter<Product> = new EventEmitter<Product>();
 
+  productsAll: Product[] = [];
+
   products: Product[] = [];
+
   disabled: boolean = true;
+
+  get filterIsBool(): boolean {
+    return this.fs.info.find(e => e.key === this.filterKey)?.type === 'checkbox';
+  }
+
+  filterKey: string = '';
+  filterString: string  = '';
+  filterBool: boolean  = false;
 
   startIdx: number = 0;
   get count(): number {
@@ -48,8 +59,8 @@ export class DataEditorComponent implements OnInit {
   readAll(): void {
     this.disabled = true;
     this.productService.getAll().subscribe(data => {
-      this.products = data;
-      this.sort();
+      this.productsAll = data;
+      this.sortFilter();
       this.disabled = false});
   }
 
@@ -67,13 +78,13 @@ export class DataEditorComponent implements OnInit {
   }
 
   refreshProduct(oldproduct: Product, newproduct: Product) {
-    const index: number = this.products.indexOf(oldproduct);
+    const index: number = this.productsAll.indexOf(oldproduct);
     if (index >= 0)
     {
-      this.products[index] = newproduct;
-      this.sort();
+      this.productsAll[index] = newproduct;
+      this.sortFilter();
     }
-      this.disabled = false;
+    this.disabled = false;
   }
 
   onRead(product: Product): void {
@@ -81,25 +92,37 @@ export class DataEditorComponent implements OnInit {
     this.productService.get(product.id).subscribe( next => this.refreshProduct(product, next));
   }
 
+  filter() {
+    this.products = this.productsAll.filter(value => {
+      if (this.filterKey === ''){
+        return true;
+      } else if (this.filterIsBool){
+        return (this.filterBool && value[this.filterKey as keyof Product]) || !this.filterBool && ! value[this.filterKey as keyof Product];
+      } else {
+        return value[this.filterKey].toString().toLowerCase().includes(this.filterString.toLowerCase());
+      }
+    });
+  }
 
-  sort() {
-    if (!this.sortedInfo)
-      return;
-    const info: FormInfo = this.sortedInfo;
-    const key = info.key as keyof Product;
-    const reverse = this.revSort ? -1 : 1;
-    if (info.i == 0)
-      this.products.sort((a, b) => reverse * ((a[key] as number) - (b[key] as number)));
-    else if (info.i == 1)
-      this.products.sort((a, b) => reverse * ((a[key] as string).localeCompare(b[key] as string)))
-    else 
-      this.products.sort((a, b) => reverse * ((a[key] === b[key] ? 0 : a[key] ? -1 : 1)));
+  sortFilter() {
+    if (this.sortedInfo) {
+      const info: FormInfo = this.sortedInfo;
+      const key = info.key as keyof Product;
+      const reverse = this.revSort ? -1 : 1;
+      if (info.i == 0)
+        this.productsAll.sort((a, b) => reverse * ((a[key] as number) - (b[key] as number)));
+      else if (info.i == 1)
+        this.productsAll.sort((a, b) => reverse * ((a[key] as string).localeCompare(b[key] as string)))
+      else 
+        this.productsAll.sort((a, b) => reverse * ((a[key] === b[key] ? 0 : a[key] ? -1 : 1)));
+    }
+    this.filter();
   }
 
   thClick(info: FormInfo): void {
     this.revSort = this.sortedInfo == info ? !this.revSort : false;
     this.sortedInfo = info;
-    this.sort();
+    this.sortFilter();
   }
 
   onPrevious(): void {
@@ -118,7 +141,6 @@ export class DataEditorComponent implements OnInit {
     this.disabled = true;
     this.productService.add(product).subscribe(
       data => {
-        console.log(data);
         this.readAll();
       }
     );
@@ -126,6 +148,10 @@ export class DataEditorComponent implements OnInit {
 
   onShowImage(product: Product): void {
     this.showProductImage.emit(product);
+  }
+
+  onFilterChange(): void {
+    this.filter()
   }
 
   ngOnInit(): void {
