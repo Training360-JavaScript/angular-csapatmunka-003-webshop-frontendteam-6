@@ -1,6 +1,6 @@
 <div class="container-flex">
 
-  <h1 *ngIf="name">{{ name }} kategória termékei</h1>
+  <h1 *ngIf="name" class="category-title">{{ name }} kategória termékei</h1>
   <div class="row" *ngIf="products|async">
     <app-product-list *ngIf="category" [products]="products | async | filter:{categoryId:category.id}"></app-product-list>
   </div>
