@@ -13,6 +13,8 @@ export class ProductListComponent implements OnInit {
 
   phrase: string = '';
   order: string =  'price';
+  featured: boolean = false;
+  specialOffer: boolean = false;
   direction: string = 'ascend';
 
   constructor() { }

@@ -1,0 +1,9 @@
+app-product-list {
+  width: 100%;
+}
+
+.custom-control-input:checked + .custom-control-label::before {
+  color: #fff;
+  border-color: #090979 !important;
+  background-color: #090979 !important;
+}

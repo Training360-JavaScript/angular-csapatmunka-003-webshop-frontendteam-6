@@ -26,7 +26,8 @@
     <tr>
       <th *ngFor="let info of fs.info">
         {{ info.text }} <br>
-        <i (click)="thClick(info)" [class]="[
+        <i (click)="thClick(info)"
+          [class]="[
             'fa',
             'fa-lg',
             (info == sortedInfo ? iNames[info.i * 2 + (revSort ? 0 : 1)] : 'fa-sort')
@@ -38,13 +39,16 @@
   <tbody>
     <tr *ngFor="let product of products | slice:startIdx:endIdx">
       <th scope="row">{{product.id}}</th>
-      <td *ngFor="let info of fs.info | slice:1">
-        <ng-container *ngIf="info.type === 'checkbox'; else elseBlock">
-          <input [disabled]="disabled" [class]="info.key" type="checkbox" [(ngModel)]="product[info.key]">
-        </ng-container>
-        <ng-template #elseBlock>
-          <input [disabled]="disabled" [class]="info.key" [type]="info.type" [(ngModel)]="product[info.key]">
-        </ng-template>
+      <td *ngFor="let info of fs.info | slice:1" [ngSwitch]="info.type">
+
+        <input *ngSwitchCase="'checkbox'" [disabled]="disabled" [class]="info.key" type="checkbox" [(ngModel)]="product[info.key]">
+
+        <select *ngSwitchCase="'select'" [disabled]="disabled" [class]="info.key" [(ngModel)]="product[info.key]">
+          <option *ngFor="let option of info.options" [value]="option.id">{{ option.name }}</option>
+        </select>
+
+        <input *ngSwitchDefault [disabled]="disabled" [class]="info.key" [type]="info.type" [(ngModel)]="product[info.key]">
+
       </td>
       <td>
         <div class="btn-group">
@@ -58,5 +62,8 @@
   </tbody>
 </table>
 <!-- create new form -->
-<app-create-new-form [(visible)]="createNewFormIsVisible" (addProduct)="addProduct($event)"
-  (showProductImage)="onShowImage($event)"></app-create-new-form>
+<app-create-new-form 
+  [(visible)]="createNewFormIsVisible"
+  (addProduct)="addProduct($event)"
+  (showProductImage)="onShowImage($event)"
+></app-create-new-form>

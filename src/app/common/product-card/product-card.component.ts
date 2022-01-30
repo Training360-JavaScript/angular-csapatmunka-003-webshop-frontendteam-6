@@ -21,7 +21,7 @@ export class ProductCardComponent implements OnInit {
   get hiresLoaded(): boolean {
     return !this.hiresLoadCounter;
   }
-  
+
   getOriginalPrice(price: number) {
     return price / (this.configService.specialOfferPercent / 100);
   }
@@ -48,7 +48,7 @@ export class ProductCardComponent implements OnInit {
       imgElement.onload = () => this.onImageLoad();
     }, 0);
   }
-  
+
   endModal(): void {
     this.modalImage = false;
     if (this.modalAutoHideTimerHandle) window.clearTimeout(this.modalAutoHideTimerHandle);
@@ -68,7 +68,7 @@ export class ProductCardComponent implements OnInit {
   onModalClick(): void {
     this.endModal();
   }
-  
+
   onImageLoad(): void {
     if (!this.hiresLoaded) {
       window.requestAnimationFrame(this.onImageLoad.bind(this));
@@ -79,7 +79,7 @@ export class ProductCardComponent implements OnInit {
   onAddToCart(): void {
     this.addToCart.emit(this.product);
   }
-  
+
   ngOnInit(): void {
   }
 

@@ -26,11 +26,11 @@ export class FilterPipe implements PipeTransform {
       result = result.filter(product => product.active === options.active);
     }
 
-    if (Object.keys(options).includes('specialOffer')) {
+    if ( options?.specialOffer ) {
       result = result.filter(product => product.specialOffer === options.specialOffer);
     }
 
-    if (Object.keys(options).includes('featured')) {
+    if ( options?.featured ) {
       result = result.filter(product => product.featured === options.featured);
     }
 
