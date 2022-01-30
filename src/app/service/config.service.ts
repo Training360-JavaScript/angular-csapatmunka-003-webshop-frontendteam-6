@@ -1,4 +1,3 @@
-import { IMenuItem } from './config.service';
 import { Injectable } from '@angular/core';
 
 export interface IMenuItem {
@@ -41,6 +40,14 @@ export class ConfigService {
   fullImagePostfix: string = '';
   fullImageTimeout: number = 10000;
   specialOfferPercent: number = 80;
+
+  getImageUrl(fname: string): string {
+    return `${this.cardImageFolder}${fname}${this.cardImagePostfix}`;
+  }
+  
+  getFullImageUrl(fname: string): string {
+    return `${this.fullImageFolder}${fname}${this.fullImagePostfix}`;
+  }
 
   constructor() {
     console.log(this.menuItems);
