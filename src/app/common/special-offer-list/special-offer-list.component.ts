@@ -7,7 +7,7 @@ import { Product } from 'src/app/model/product';
   styleUrls: ['./special-offer-list.component.scss']
 })
 export class SpecialOfferListComponent implements OnInit {
-  @Input() products: Product[] = [];
+  @Input() products: Product[] | null = [];
   constructor() { }
 
   ngOnInit(): void {

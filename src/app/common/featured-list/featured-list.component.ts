@@ -7,7 +7,7 @@ import { Product } from 'src/app/model/product';
   styleUrls: ['./featured-list.component.scss']
 })
 export class FeaturedListComponent implements OnInit {
-  @Input() products: Product[] = [];
+  @Input() products: Product[] | null = [];
   phrase: string = "";
 
   constructor() { }
