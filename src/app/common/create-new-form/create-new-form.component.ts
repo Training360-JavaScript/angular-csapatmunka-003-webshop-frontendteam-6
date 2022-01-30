@@ -9,6 +9,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CreateNewFormComponent implements OnInit {
 
+  imageModalVisible:boolean = false;
+
   private mvisible: boolean = false;
   @Input() set visible(value: boolean) {
     if (this.mvisible != value)
@@ -59,9 +61,14 @@ export class CreateNewFormComponent implements OnInit {
     this.addProduct.emit(newProd);
   }
 
+  onShow(): void {
+    this.imageModalVisible = true;
+  }
+
   onClick(event: any): void {
     event.stopPropagation();
   }
+
 
   ngOnInit(): void {
 

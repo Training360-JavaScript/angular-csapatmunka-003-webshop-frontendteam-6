@@ -35,6 +35,7 @@
       <td>
         <div class="btn-group">
           <button [disabled]="disabled" (click)="onRead(product)" class="btn btn-secondary">Re-read</button>
+          <button [disabled]="disabled" (click)="onShowImage(product)" class="btn btn-info">Show</button>
           <button [disabled]="disabled" (click)="onModify(product)" class="btn btn-primary">Modify</button>
           <button [disabled]="disabled" (click)="onDelete(product)" class="btn btn-danger">Delete</button>
         </div>

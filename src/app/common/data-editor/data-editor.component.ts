@@ -2,7 +2,7 @@ import { FormInfo } from 'src/app/forminfo/form-info';
 import { FormService } from './../../service/form.service';
 import { ProductService } from './../../service/product.service';
 import { Product } from '../../model/product';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-data-editor',
@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./data-editor.component.scss']
 })
 export class DataEditorComponent implements OnInit {
+
+  @Output() showProductImage: EventEmitter<Product> = new EventEmitter<Product>();
 
   products: Product[] = [];
   disabled: boolean = true;
@@ -120,6 +122,10 @@ export class DataEditorComponent implements OnInit {
         this.readAll();
       }
     );
+  }
+
+  onShowImage(product: Product): void {
+    this.showProductImage.emit(product);
   }
 
   ngOnInit(): void {

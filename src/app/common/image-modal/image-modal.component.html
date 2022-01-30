@@ -1,1 +1,10 @@
-
+<div class="image-modal-container" [ngClass]="{'image-modal-hidden': !visible, 'image-modal-visible': visible }" (click)="onClick()" >
+  <div class="image-modal-inner" >
+    <img class="small" [src]="enableFullImageUrl ? fullImageUrl : imageUrl" class="card-img-top" [alt]="productName || 'none'" >
+    <div class="modal-inner-text">
+      {{ productName }}
+      <!-- <ng-container *ngTemplateOutlet="priceTemplate" ></ng-container> -->
+      <div class="loading" [ngClass]="{'hidden': hiresLoaded}" >(Higher resolution image loading, please wait...)</div>
+    </div>
+  </div>
+</div>
