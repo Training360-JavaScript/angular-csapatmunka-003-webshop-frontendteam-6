@@ -2,8 +2,18 @@
 <nav class="navbar navbar-light bg-light mx-0 my-5">
   <form class="form-inline w-100">
 
-    Név:
-    <input [(ngModel)]="phrase" name="phrase" type="text" class="form-control ml-2 mr-4" />
+    <label>
+      Név:
+      <input [(ngModel)]="phrase" name="phrase" type="text" class="form-control ml-2 mr-4" />
+    </label>
+    <div class="custom-control custom-switch ml-2 mr-4 flex-column-reverse">
+      <input name="featured" [(ngModel)]="featured" type="checkbox" class="custom-control-input" id="featured">
+      <label class="custom-control-label" for="featured">Kiemelt</label>
+    </div>
+    <div class="custom-control custom-switch ml-2 mr-4 flex-column-reverse">
+      <input name="specialOffer" [(ngModel)]="specialOffer" type="checkbox" class="custom-control-input" id="specialOffer">
+      <label class="custom-control-label" for="specialOffer">Akciós</label>
+    </div>
 
     <div class="ml-auto">
       Rendezés:
@@ -21,12 +31,17 @@
 </nav>
 <div class="container-flex">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
-    <ng-container *ngFor="let product of products | filter: {name:phrase} | sorter:order:direction">
+    <ng-container *ngFor="let product of products | filter: {name:phrase, featured: featured, specialOffer:specialOffer } | sorter:order:direction">
       <app-product-card [product]="product" class="mb-4"> </app-product-card>
     </ng-container>
 
-    <ng-container *ngIf="(products| filter: {name:phrase})?.length===0">
-      nincs találat
+    <ng-container *ngIf="(products| filter: {name:phrase, featured: featured, specialOffer:specialOffer})?.length===0">
+      <ng-container *ngIf="phrase==='' && featured===false &&  specialOffer===false; else filterx">
+        ez a kategória nem tartalmaz terméket
+      </ng-container>
+      <ng-template #filterx>
+        nincs találat
+      </ng-template>
     </ng-container>
   </div>
   <div class="list-spacer"></div>

@@ -20,7 +20,7 @@
     id="navbarSupportedContent"
   >
     <ul class="navbar-nav mr-auto">
-      <li *ngFor="let item of menuItems" class="nav-item">
+      <li *ngFor="let item of menuItems" class="nav-item" [class.ml-lg-auto]="item.space">
         <a
           class="nav-link text-white"
           [routerLink]="item.link">
