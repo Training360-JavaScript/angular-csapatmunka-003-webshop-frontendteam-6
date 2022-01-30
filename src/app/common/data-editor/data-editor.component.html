@@ -69,7 +69,7 @@
 
 
         <select *ngSwitchCase="'select'" [disabled]="disabled" class="form-control" [class]="info.key" [(ngModel)]="product[info.key]">
-          <option *ngFor="let option of info.options" [value]="option.id">{{ option.name }}</option>
+          <option *ngFor="let option of info.options" [ngValue]="option.id">{{ option.name }}</option>
         </select>
 
         <input *ngSwitchDefault [disabled]="disabled" class="form-control" [class]="info.key" [type]="info.type" [(ngModel)]="product[info.key]">
