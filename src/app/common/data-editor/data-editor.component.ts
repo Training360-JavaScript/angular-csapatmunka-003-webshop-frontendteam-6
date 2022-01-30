@@ -1,3 +1,4 @@
+import { ConfigService } from 'src/app/service/config.service';
 import { FormInfo } from 'src/app/forminfo/form-info';
 import { FormService } from './../../service/form.service';
 import { ProductService } from './../../service/product.service';
@@ -52,6 +53,7 @@ export class DataEditorComponent implements OnInit {
   ]
   
   constructor( 
+    private cs: ConfigService,
     private productService: ProductService,
     public fs: FormService,
    ) { }
@@ -96,6 +98,8 @@ export class DataEditorComponent implements OnInit {
     this.products = this.productsAll.filter(value => {
       if (this.filterKey === ''){
         return true;
+      } else if (this.filterKey == 'catId') {
+        return this.cs.categoryList.find(e => e.id == value.catId)?.name.toLowerCase().includes(this.filterString.toLowerCase());
       } else if (this.filterIsBool){
         return (this.filterBool && value[this.filterKey as keyof Product]) || !this.filterBool && ! value[this.filterKey as keyof Product];
       } else {
@@ -109,7 +113,7 @@ export class DataEditorComponent implements OnInit {
       const info: FormInfo = this.sortedInfo;
       const key = info.key as keyof Product;
       const reverse = this.revSort ? -1 : 1;
-      if (info.i == 0)
+      if (info.i == 0 || info.key == 'catId')
         this.productsAll.sort((a, b) => reverse * ((a[key] as number) - (b[key] as number)));
       else if (info.i == 1)
         this.productsAll.sort((a, b) => reverse * ((a[key] as string).localeCompare(b[key] as string)))

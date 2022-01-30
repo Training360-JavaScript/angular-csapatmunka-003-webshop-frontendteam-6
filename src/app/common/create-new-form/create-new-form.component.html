@@ -3,9 +3,10 @@
   <div class="create-new-form-inner" (click)="onClick($event)">
     <div class="create-new-form-data">
       <div>
-        <h2>
+        <h1 class="h4">
           Add new
-        </h2>
+        </h1>
+        <hr>
       </div>
       <table>
         <thead>
@@ -15,14 +16,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="form-group" *ngFor="let info of fs.info | slice:1">
+          <tr *ngFor="let info of fs.info | slice:1">
             <td class="text-right pr-2">
               <label [for]="getid(info.key)">{{info.text}}</label>
             </td>
             <td class="text-left pl-1">
               <ng-container *ngIf="info.type === 'checkbox'; else elseBlock">
-                <input [id]="getid(info.key)" [class]="[getclass(info.key), 'form-control']" type="checkbox"
-                  [(ngModel)]="product[info.key]">
+
+                <div [class]="info.key" class="custom-control custom-switch">
+                  <input type="checkbox" [class]="getclass(info.key)" class="custom-control-input" [id]="getid(info.key)" [(ngModel)]="product[info.key]">
+                  <label class="custom-control-label" [for]="getid(info.key)"></label>
+                </div>
+
+                <!-- <input [id]="getid(info.key)" [class]="[getclass(info.key), 'form-control']" type="checkbox"
+                  [(ngModel)]="product[info.key]"> -->
+
               </ng-container>
               <ng-template #elseBlock>
                 <input [id]="getid(info.key)" [class]="[getclass(info.key), 'form-control']" [type]="info.type"
@@ -34,7 +42,7 @@
       </table>
 
     </div>
-    <div class="btn-group">
+    <div class="btn-group mt-4">
       <button class="btn btn-success" (click)="onAdd()">Add</button>
       <button class="btn btn-info" (click)="onShow()">Show</button>
       <button class="btn btn-secondary" (click)="onClear()">Reset</button>

@@ -1,12 +1,4 @@
-<div class="data-editor-pager btn-group">
-  <button [disabled]="first" class="btn btn-secondary" (click)="onPrevious()">&lt;&lt; Previous</button>
-  <button [disabled]="last" class="btn btn-secondary" (click)="onNext()">Next &gt;&gt;</button>
-  <label class="mx-5">
-    ( From {{ startIdx + 1 }}. to {{ endIdx }}. ) / {{ products.length }}
-  </label>
-</div>
-<button class="btn btn-secondary ml-5" (click)="createNew()">Add new</button>
-<div class="form-inline w-100">
+<div class="form-inline w-100 mb-3">
   <div class="mr-auto">
     Fiter
     <select [(ngModel)]="filterKey" (ngModelChange)="onFilterChange()" class="form-control ml-2 mr-4" id="data-editor-filter-select">
@@ -14,18 +6,32 @@
       <option *ngFor="let info of fs.info" [value]="info.key">{{ info.text }}</option>
     </select>
     <ng-container *ngIf="filterIsBool; else elseBlock">
-      <input type="checkbox" [(ngModel)]="filterBool" (ngModelChange)="onFilterChange()" class="form-control ml-1">
+      <!-- <input type="checkbox" [(ngModel)]="filterBool" (ngModelChange)="onFilterChange()" class="form-control ml-1"> -->
+      <div class="custom-control custom-switch pt-2" style="display: inline-block;">
+        <input type="checkbox" class="custom-control-input" id="data-editor-filter_checkbox" [(ngModel)]="filterBool" (ngModelChange)="onFilterChange()">
+        <label class="custom-control-label" for="data-editor-filter_checkbox"></label>
+      </div>
     </ng-container>
     <ng-template #elseBlock>
       <input [(ngModel)]="filterString" (ngModelChange)="onFilterChange()" class="form-control ml-1">
     </ng-template>
+  </div>
+  <div>
+    <div class="data-editor-pager btn-group">
+      <button [disabled]="first" class="btn btn-secondary" (click)="onPrevious()"><i class="fa fa-step-backward" aria-hidden="true"></i>&nbsp;&nbsp; Previous</button>
+      <button [disabled]="last" class="btn btn-secondary" (click)="onNext()">Next &nbsp;&nbsp;<i class="fa fa-step-forward" aria-hidden="true"></i></button>
+      <label class="mx-1 text-center" style="width: 15em;">
+        ( From {{ startIdx + 1 }}. to {{ endIdx }}. ) / {{ products.length }}
+      </label>
+    </div>
+    <button class="btn btn-secondary" (click)="createNew()">Add new</button>
   </div>
 </div>
 <table class="table table-striped data-editor-table">
   <thead>
     <tr>
       <th *ngFor="let info of fs.info">
-        {{ info.text }} <br>
+        {{ info.text }}
         <i (click)="thClick(info)"
           [class]="[
             'fa',
@@ -35,19 +41,38 @@
       </th>
       <th>Operations</th>
     </tr>
+    <!-- <tr>
+      <th *ngFor="let info of fs.info">
+        <i (click)="thClick(info)"
+          [class]="[
+            'fa',
+            'fa-lg',
+            (info == sortedInfo ? iNames[info.i * 2 + (revSort ? 0 : 1)] : 'fa-sort')
+          ]" aria-hidden="true"></i>
+      </th>
+      <th></th>
+    </tr> -->
   </thead>
   <tbody>
     <tr *ngFor="let product of products | slice:startIdx:endIdx">
-      <th scope="row">{{product.id}}</th>
+      <th scope="row" class="pt-3">
+        {{product.id}}
+      </th>
       <td *ngFor="let info of fs.info | slice:1" [ngSwitch]="info.type">
 
-        <input *ngSwitchCase="'checkbox'" [disabled]="disabled" [class]="info.key" type="checkbox" [(ngModel)]="product[info.key]">
+        <!-- <input *ngSwitchCase="'checkbox'" [disabled]="disabled" class="form-control" [class]="info.key" type="checkbox" [(ngModel)]="product[info.key]"> -->
 
-        <select *ngSwitchCase="'select'" [disabled]="disabled" [class]="info.key" [(ngModel)]="product[info.key]">
+        <div *ngSwitchCase="'checkbox'"  [class]="info.key" class="custom-control custom-switch pt-2">
+          <input [disabled]="disabled" type="checkbox" class="custom-control-input" [id]="'checkboxId__' + info.key + product.id" [(ngModel)]="product[info.key]">
+          <label class="custom-control-label" [for]="'checkboxId__' + info.key + product.id"></label>
+        </div>
+
+
+        <select *ngSwitchCase="'select'" [disabled]="disabled" class="form-control" [class]="info.key" [(ngModel)]="product[info.key]">
           <option *ngFor="let option of info.options" [value]="option.id">{{ option.name }}</option>
         </select>
 
-        <input *ngSwitchDefault [disabled]="disabled" [class]="info.key" [type]="info.type" [(ngModel)]="product[info.key]">
+        <input *ngSwitchDefault [disabled]="disabled" class="form-control" [class]="info.key" [type]="info.type" [(ngModel)]="product[info.key]">
 
       </td>
       <td>
