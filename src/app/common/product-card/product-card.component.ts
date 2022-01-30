@@ -28,11 +28,11 @@ export class ProductCardComponent implements OnInit {
 
 
   get imageUrl(): string {
-    return `${this.configService.cardImageFolder}${this.product.image}${this.configService.cardImagePostfix}`;
+    return this.configService.getImageUrl(this.product.image);
   }
 
   get fullImageUrl(): string {
-    return `${this.configService.fullImageFolder}${this.product.image}${this.configService.fullImagePostfix}`;
+    return this.configService.getFullImageUrl(this.product.image);
   }
 
   constructor(
@@ -68,11 +68,6 @@ export class ProductCardComponent implements OnInit {
   onModalClick(): void {
     this.endModal();
   }
-
-  onAddToCart(): void {
-    this.addToCart.emit(this.product);
-  }
-
   
   onImageLoad(): void {
     if (!this.hiresLoaded) {
@@ -81,6 +76,10 @@ export class ProductCardComponent implements OnInit {
     }
   }
 
+  onAddToCart(): void {
+    this.addToCart.emit(this.product);
+  }
+  
   ngOnInit(): void {
   }
 

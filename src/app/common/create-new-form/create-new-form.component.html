@@ -1,0 +1,76 @@
+<div class="create-new-form" [ngClass]="{'create-new-form-hidden': !visible, 'create-new-form-visible': visible}"
+  (click)="onClose()">
+  <div class="create-new-form-inner" (click)="onClick($event)">
+    <div class="create-new-form-data">
+      <div>
+        <h2>
+          Add new
+        </h2>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th class="text-right pr-1">Propery</th>
+            <th class="text-center ">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="form-group" *ngFor="let info of fs.info | slice:1">
+            <td class="text-right pr-2">
+              <label [for]="getid(info.key)">{{info.text}}</label>
+            </td>
+            <td class="text-left pl-1">
+              <ng-container *ngIf="info.type === 'checkbox'; else elseBlock">
+                <input [id]="getid(info.key)" [class]="[getclass(info.key), 'form-control']" type="checkbox"
+                  [(ngModel)]="product[info.key]">
+              </ng-container>
+              <ng-template #elseBlock>
+                <input [id]="getid(info.key)" [class]="[getclass(info.key), 'form-control']" [type]="info.type"
+                  [(ngModel)]="product[info.key]">
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-success" (click)="onAdd()">Add</button>
+      <button class="btn btn-info" (click)="onShow()">Show</button>
+      <button class="btn btn-secondary" (click)="onClear()">Reset</button>
+      <button class="btn btn-danger" (click)="onClose()">Cancel</button>
+    </div>
+  </div>
+</div>
+<app-image-modal 
+  [productName]="product.name" 
+  [imageFileName]="product.image"
+  [(visible)]="imageModalVisible"
+></app-image-modal>
+
+
+<!-- 
+  <div class="create-new-form" [ngClass]="{'create-new-form-hidden': !visible, 'create-new-form-visible': visible}"
+  (click)="onClose()">
+  <div class="create-new-form-inner" (click)="onClick($event)">
+    <div class="create-new-form-data">
+      <div class="form-group" *ngFor="let info of fs.info | slice:1">
+        <label [for]="getid(info.key)">{{info.text}}</label>
+        <ng-container *ngIf="info.type === 'checkbox'; else elseBlock">
+          <input [id]="getid(info.key)" [class]="[getclass(info.key), 'form-control']" type="checkbox"
+            [(ngModel)]="product[info.key]">
+        </ng-container>
+        <ng-template #elseBlock>
+          <input [id]="getid(info.key)" [class]="[getclass(info.key), 'form-control']" [type]="info.type"
+            [(ngModel)]="product[info.key]">
+        </ng-template>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-success" (click)="onAdd()">Add</button>
+      <button class="btn btn-secondary" (click)="onClear()">Clear</button>
+      <button class="btn btn-danger" (click)="onClose()">Cancel</button>
+    </div>
+  </div>
+</div>
+ -->
