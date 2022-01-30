@@ -10,8 +10,6 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class HomeComponent implements OnInit {
 
-  data$: Observable<Product[]> = this.ps.getAll();
-
   products: Product[] = [];
 
   constructor(private ps: ProductService) {
